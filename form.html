@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Request Form</title>
+  <!-- bit.css CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bit.css/dist/bit.min.css">
+  <style>
+    /* Custom form styling and centering */
+    body {
+      background-color: #f7f9fc;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: #2D3F4D;
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      font-weight: 600;
+      color: #2D3F4D;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      padding: 0.75rem;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2D3F4D;
+      box-shadow: 0 0 0 2px rgba(45,63,77,0.1);
+    }
+    .button.primary {
+      background-color: #2D3F4D;
+      color: #ffffff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: block;
+      margin: 1rem auto 0;
+      transition: background-color 0.2s;
+      width: auto;
+    }
+    .button.primary:hover {
+      background-color: #1f2a33;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact & Request Form</h1>
+    <!-- Formspree endpoint (replace xyzwzzke if different) -->
+    <form id="requestForm" action="https://formspree.io/f/xyzwzzke" method="POST">
+      <!-- spam protection honeypot -->
+      <input type="text" name="_gotcha" class="hidden">
+      <!-- reply-to sets the email address Formspree uses as sender -->
+      <!-- The user’s email field name should be _replyto -->
+      <!-- subject for email -->
+      <input type="hidden" name="_subject" value="New Contact/Request Form Submission">
+      <!-- redirect after successful submit -->
+      <input type="hidden" name="_next" value="/thank-you.html">
+
+      <!-- Request Type -->
+      <div class="form-group mb2">
+        <label for="requestType">Request Type</label>
+        <select id="requestType" name="requestType" required>
+          <option value="">-- Select a request type --</option>
+          <option value="general">General Inquiry</option>
+          <option value="dataDeletion">Data Deletion</option>
+          <option value="accountDeletion">Account Deletion</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Name -->
+      <div class="form-group mb2">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group mb2">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="_replyto" placeholder="Your email" required>
+      </div>
+
+      <!-- Other Details (hidden by default) -->
+      <div class="form-group mb2 hidden" id="otherDetailsContainer">
+        <label for="otherDetails">Please Specify</label>
+        <input type="text" id="otherDetails" name="otherDetails" placeholder="Details about your request">
+      </div>
+
+      <!-- Message -->
+      <div class="form-group mb4">
+        <label for="message">Details</label>
+        <textarea id="message" name="message" rows="5" placeholder="Describe your request" required></textarea>
+      </div>
+
+      <button type="submit" class="button primary">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Toggle 'Other' details input
+    document.getElementById('requestType').addEventListener('change', function() {
+      const otherContainer = document.getElementById('otherDetailsContainer');
+      const otherInput = document.getElementById('otherDetails');
+      if (this.value === 'other') {
+        otherContainer.classList.remove('hidden');
+        otherInput.required = true;
+      } else {
+        otherContainer.classList.add('hidden');
+        otherInput.required = false;
+      }
+    });
+  </script>
+</body>
+</html>
