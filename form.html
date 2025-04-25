@@ -16,6 +16,27 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
+      flex-direction: column;
+    }
+    /* Navigation bar */
+    nav {
+      width: 100%;
+      max-width: 600px;
+      background-color: #2D3F4D;
+      padding: 0.75rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 0.75rem;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     .container {
       width: 100%;
@@ -75,6 +96,14 @@
   </style>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </nav>
+
+  <!-- Form container -->
   <div class="container">
     <h1>Contact & Request Form</h1>
     <!-- Formspree endpoint (replace xyzwzzke if different) -->
@@ -82,10 +111,7 @@
       <!-- spam protection honeypot -->
       <input type="text" name="_gotcha" class="hidden">
       <!-- reply-to sets the email address Formspree uses as sender -->
-      <!-- The user’s email field name should be _replyto -->
-      <!-- subject for email -->
       <input type="hidden" name="_subject" value="New Contact/Request Form Submission">
-      <!-- redirect after successful submit -->
       <input type="hidden" name="_next" value="/thank-you.html">
 
       <!-- Request Type -->
